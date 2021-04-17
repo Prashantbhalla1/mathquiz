@@ -17,7 +17,12 @@ function started(){
     $(".timer").removeClass("widthse");
     $("#s" + randomposition).removeClass("right");
 
-    $("#" + useroption).removeClass("wrong");
+       for (i = 1; i <= 4; i++) {
+
+      $("#s" + i).removeClass("wrong");
+
+    }
+
     userclicked = 0;
     st = 1;
 
