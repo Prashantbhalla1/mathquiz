@@ -15,10 +15,10 @@ let useroption = 0;
 function started(){
   if (!start) {
     $(".timer").removeClass("widthse");
-    $("#s" + randomposition).removeClass("right");
+   
 
        for (i = 1; i <= 4; i++) {
-
+ $("#s" + i).removeClass("right");
       $("#s" + i).removeClass("wrong");
 
     }
