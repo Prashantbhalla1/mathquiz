@@ -9,7 +9,7 @@ let ansa = [];
 let ans;
 let userclicked = -1;
 let time = 15;
-let st = 0;
+let st = 0,userans=0;
 let username;
 let useroption = 0;
 function started(){
@@ -60,7 +60,7 @@ setInterval(() => {
 }, 1000);
 
 $(".ans").click(function () {
-  userclicked = 1;
+  if(userans==1){userclicked = 1;userans=0;
   aq = new Audio("green.mp3");
   aq.play();
 
@@ -81,12 +81,14 @@ $(".ans").click(function () {
   } else {
     over();
   }
+  
+}
 });
 
 function maine() {
   useroption = 0;
   st = 1;
-  time = 15;
+  time = 15;userans=1;
   userclicked = 0;
   aq = new Audio("red.mp3");
   aq.play();
