@@ -111,7 +111,10 @@ time=15;
   $(".cont").css("display","none");
   $(".new").css("display","flex");$(".newbutton1").css("display","none");
   if(ff==1)
-  {$(".newh1").html("Congratulations 🥳🥳 " + username +" Scored " + noqu + "/" + noqu );}
+  {   let audio=new Audio("congo.mp3");
+    audio.play();
+    
+    $(".newh1").html("Congratulations 🥳🥳 " + username +" Scored " + noqu + "/" + noqu );}
   else if(ff==2){
     $(".newh1").html("TIME-OVER, " + username + " Score = " + (q - 1));
   }
