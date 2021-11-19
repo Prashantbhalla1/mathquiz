@@ -12,7 +12,7 @@ let time = 15;
 let st = 0,userans=0;
 let username;
 let useroption = 0;
-let noqu=100000;
+let noqu=1000000;
 function started(){
   if (!start) {
     $(".timer").removeClass("widthse");
@@ -49,19 +49,38 @@ $(".bt").click(function(){
 
 
 })
-
+let correct=0;
 setInterval(() => {
   if (userclicked == 0 && time < 0 && start) {
-    over();
+if(noqu==1000000)
+    {    over();
     congo(2);
-    userclicked = 1;
-  } else if (st == 1 && time >= 0 && q) {
+    userclicked = 1;}
+    else {userclicked = 1;
+      $(".timer").text("TIME OVER");
+    $(".timer").addClass("widthse");
+      if (start === true) {
+        setTimeout(maine, 2000);
+      }
+      $("#" + useroption).addClass("wrong");
+  $("#s"+globalrandom).addClass("right");
+     setTimeout(() => {$(".timer").text("15");
+      $(".timer").removeClass("widthse");
+      for (i = 1; i <= 4; i++) {
+        $("#s" + i).removeClass("right");
+             $("#s" + i).removeClass("wrong");
+       
+           }
+     }, 2000);}
+  }
+  
+  else if (st == 1 && time >= 0 && q) {
     $(".timer").text(time);
   }
 
   time--;
 }, 1000);
-
+let globalrandom;
 $(".ans").click(function () {
   if(userans==1){userclicked = 1;userans=0;
   aq = new Audio("green.mp3");
@@ -81,7 +100,25 @@ $(".ans").click(function () {
     if (start === true) {
       setTimeout(maine, 1500);
     }
-  } else {
+    correct++;
+  }
+  else if(noqu!=1000000){
+    if (start === true) {
+      setTimeout(maine, 2000);
+    }
+    $("#" + useroption).addClass("wrong");
+$("#s"+globalrandom).addClass("right");
+   setTimeout(() => {
+    for (i = 1; i <= 4; i++) {
+      $("#s" + i).removeClass("right");
+           $("#s" + i).removeClass("wrong");
+     
+         }
+   }, 2000);
+
+  }
+  
+  else {
     $("#" + useroption).removeClass("press");
     over();
     congo(0);
@@ -111,15 +148,16 @@ time=15;
   $(".cont").css("display","none");
   $(".new").css("display","flex");$(".newbutton1").css("display","none");
   if(ff==1)
-  {   let audio=new Audio("congo.mp3");
+  {
+    let audio=new Audio("congo.mp3");
     audio.play();
     
-    $(".newh1").html("Congratulations 🥳🥳 " + username +" Scored " + noqu + "/" + noqu );}
+    $(".newh1").html("Congratulations 🥳🥳 " + username +" Scored " + correct + "/" + noqu );}
   else if(ff==2){
-    $(".newh1").html("TIME-OVER, " + username + " Score = " + (q - 1));
+    $(".newh1").html("TIME-OVER, " + username + " Score = " + correct);
   }
   else{
-    $(".newh1").html("GAME-OVER, " + username + " Score = " + (q - 1));
+    $(".newh1").html("GAME-OVER, " + username + " Score = " +correct);
   }
  $(".quess").text(
     "Start Please"
@@ -130,6 +168,7 @@ time=15;
      
     
   }
+  correct=0;noqu=1000000;
   q=0;
  if (!start) {
       $(".conth1").text("Press any key to Restart the Game");
@@ -185,6 +224,7 @@ else
   randomposition = randomposition * 4;
   randomposition = Math.floor(randomposition);
   randomposition = randomposition + 1;
+  globalrandom=randomposition;
   $(".ans" + randomposition).text("   " + ans);
   ansa = [];
 
@@ -202,7 +242,7 @@ else
 }
 function startagain() {
  
-  start = false;
+  start = false;noqu=1000000;
   $(".bt").css("display","inline-block");
 }
 function over() {
@@ -277,7 +317,7 @@ $(".newbutton").click(function (){
 $(".button2").click(function (){
 noqu=Number(prompt("No. of Question You want to answer"));
 
-while(noqu<=0 || noqu%1!=0 || noqu==100000){
+while(noqu<=0 || noqu%1!=0 ){
   noqu=Number(prompt("Enter Valid Questions")); 
 }
 $(".second").css("display","none");
